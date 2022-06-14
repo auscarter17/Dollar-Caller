@@ -33,9 +33,9 @@
             "sizes": "192x192"
         },
         {
-            "src": "/icons/icon-284x284.png",
+            "src": "/icons/icon-384x384.png",
             "type": "image/png",
-            "sizes": "284x284"
+            "sizes": "384x384"
         },
         {
             "src": "/icons/icon-512x512.png",
@@ -45,5 +45,7 @@
     ],
     "description": "An app that helps you track finances.",
     "background_color": "#01579b",
-    "theme_color": "#ffffff"
+    "theme_color": "#ffffff",
+    "start_url": ".",
+    "display": "standalone"
 }
