@@ -15,7 +15,7 @@ request.onsuccess = function(event) {
     
     // check if app is online
     if (navigator.onLine) {
-        // uploadBudget();
+        uploadBudget();
     }
 };
 
@@ -26,16 +26,16 @@ request.onerror = function(event) {
 // this function will fire if a budget adjustment is made while offline
 function saveRecord(record) {
     const transaction = db.transaction(['budget'], 'readwrite');
-    const budgetObjectStore = transaction.budgetObjectStore('budget');
+    const budgetObjectStore = transaction.objectStore('budget');
     budgetObjectStore.add(record);
 }
 
 function uploadBudget() {
     // open a transaction on db
-    const transaction = db.transaction(['budget'], readwrite);
+    const transaction = db.transaction(['budget'], 'readwrite');
 
     //access object store
-    const budgetObjectStore = transaction.ObjectStore('pizza');
+    const budgetObjectStore = transaction.objectStore('budget');
 
     // get records from store and set to a variable
     const getAll = budgetObjectStore.getAll();
@@ -58,7 +58,7 @@ function uploadBudget() {
                     }
                     // open one more transaction
                     const transaction = db.transaction(['budget'], 'readwrite');
-                    const budgetObjectStore = transaction.ObjectStore('budget');
+                    const budgetObjectStore = transaction.objectStore('budget');
                     budgetObjectStore.clear();
 
                     alert('All saved budget changes have been submitted!');
@@ -69,3 +69,6 @@ function uploadBudget() {
         }
     };
 }
+
+// listen for app coming back online
+window.addEventListener('online', uploadBudget);
